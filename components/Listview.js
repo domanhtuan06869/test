@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput,FlatList, Button ,Image,TouchableWith
 import *as firebase from 'firebase'
 
 
-export default function listview(props) {
+export default function Listview(props) {
   var firebaseAPi={
 
     apiKey: "AIzaSyAy4hlIkRu7wOZFw_yl_ZQD_U9DwaY6_cI",
@@ -15,8 +15,8 @@ export default function listview(props) {
     messagingSenderId: "765297743299",
     appId: "1:765297743299:web:f578ccef0e69c668"
   }
-var array=[];
- 
+
+ const [list,setList]=useState()
 
 
  useEffect(()=>{
@@ -31,7 +31,7 @@ var array=[];
 
   firebase.database().ref('kiemtra/').on('value', function (snapshot) {
 
-  
+    let array=[];
     snapshot.forEach(function (childSnapshot) {
       var childData = childSnapshot.val();
       array.push({
@@ -43,7 +43,7 @@ var array=[];
       });
     });
   
-    
+    setList(array)
     
   });
   
@@ -60,19 +60,19 @@ var array=[];
           marginTop: 10, width:400,height:200,backgroundColor:'red'
         }}
           
-          data={[{Name:'fthd'}]}
+          data={list}
           renderItem={({ item }) =>
             <View style={{
               flexDirection: 'column',
             }}>
               <View style={{ flexDirection: 'row', alignItems: 'center' ,marginTop:5}}>
-                <Image style={{ width: 35, height: 35, borderRadius: 17 , marginLeft: 3 }} source={{ uri:'' }}></Image>
+              
               <View style={{flexDirection:'column'}}>
-                <Text style={{ fontWeight: 'bold', }}>  {item.Name}</Text>
-                <Text style={{fontStyle:'italic', fontSize: 10,marginLeft:3 }}>lúc </Text>
+                <Text style={{ fontWeight: 'bold', }}>Hoten:  {item.Name}</Text>
+                <Text style={{fontStyle:'italic', fontSize: 10,marginLeft:3 }}>Tuoi: </Text>
                  </View>
               </View>
-              <Image style={styles.imglist} source={{ uri: ''}}></Image>
+          
           
             </View>
 

@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "testF",
+    "homepage":"https://github.com/domanhtuan06869/test",
     "slug": "test",
     "privacy": "public",
     "sdkVersion": "33.0.0",
